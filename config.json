@@ -1,0 +1,17 @@
+{ 
+    "params":
+    { 
+        "local_server": true,
+        "local_uri": "mysql://root:@localhost/sandip",      
+        "prod_uri": "mysql://root:@localhost/sandip",
+        "blog_naame": "Sandip's Blog",
+        "gmail-user": "lilabati197601@gmail.com",
+        "gmail-password": "jdqo hbre umdq qhpw",
+        "about_text": "Hi, I am Sandip. I am a software developer and a blogger. I love to write about technology and programming. I have been blogging for the past 5 years and I have a passion for sharing my knowledge with others. I have a lot of experience in web development and I am always looking for new technologies to learn and share with my readers.",
+        "no_of_posts": 2,
+        "login_img": "2.png",
+        "admin_user": "admin@gmail.com",
+        "admin_password": "1234",
+        "upload_location": "static\\assets\\img"
+    }
+}

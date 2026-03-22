@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('{{ url_for('static', filename='assets/img/home-bg.jpg') }}');">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>{{ params['blog_naame'] }}</h1>
+                    <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<a href="/dashboard"><button class="btn btn-primary">Dashboard home</button></a>
+<a href="/logout"><button class="btn btn-primary" style="margin-left: 70vw;">Logout</button></a>
+<hr>
+<!-- Main Content-->
+<h2>EDIT/ADD TABLE</h2>
+<div class="edit" style="margin: 50px;padding: 50px;font-size: 150%;">
+    <form id="contactForm" action="/edit/{{post.sno if post else 0}}" method="post" enctype="multipart/form-data">
+        <div class="form-floating">
+            <input class="form-control" id="title" name='title' type="text" placeholder="Enter your title..."
+                value="{{post.title if post else ''}}" data-sb-validations="required" />
+            <label for="title">title</label>
+            <div class="invalid-feedback" data-sb-feedback="title:required">A title is required.</div>
+        </div>
+        <div class="form-floating">
+            <input class="form-control" id="tagline" name='tagline' type="text" placeholder="Enter your tagline..."
+                value="{{post.tags if post else ''}}" data-sb-validations="required,tagline" />
+            <label for="tagline">tagline </label>
+            <div class="invalid-feedback" data-sb-feedback="tagline:required">An tagline is required.
+            </div>
+            <div class="invalid-feedback" data-sb-feedback="tagline:tagline">tagline is not valid.</div>
+        </div>
+        <div class="form-floating">
+            <input class="form-control" id="slug" name='slug' type="text" placeholder="Enter your slug ..."
+                value="{{post.slug if post else ''}}" data-sb-validations="required" />
+            <label for="slug">slug </label>
+            <div class="invalid-feedback" data-sb-feedback="slug:required">A slug is
+                required.</div>
+        </div>
+        <div class="form-floating">
+            <textarea class="form-control" id="content" name='content' placeholder="Enter your content here..."
+                style="height: 12rem" data-sb-validations="required">{{post.content if post else ''}}</textarea>
+            <label for="content">Content</label>
+            <div class="invalid-feedback" data-sb-feedback="content:required">A content is required.
+            </div>
+        </div>
+        <p>add img file</p>
+        <div class="form-floating">
+            <input class="form-control" id="img_file" name="img_file" type="file">
+            <label for="img_file">Image File</label>
+        </div>
+        <!-- Show current image -->
+        {% if post and post.img_file %}
+        <p>Current Image: {{ post.img_file }}</p>
+        {% endif %}
+</div>
+<br />
+<!-- Submit success message-->
+<!---->
+<!-- This is what your users will see when the form-->
+<!-- has successfully submitted-->
+<div class="d-none" id="submitSuccessMessage">
+    <div class="text-center mb-3">
+        <div class="fw-bolder">Form submission successful!</div>
+        To activate this form, sign up at
+        <br />
+        <a
+            href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+    </div>
+</div>
+<!-- Submit error message-->
+<!---->
+<!-- This is what your users will see when there is-->
+<!-- an error submitting the form-->
+<div class="d-none" id="submitErrorMessage">
+    <div class="text-center text-danger mb-3">Error sending message!</div>
+</div>
+<!-- Submit Button-->
+<button class="btn btn-primary" id="submitButton" type="submit">Send</button>
+</form>
+</div>
+{% endblock %}

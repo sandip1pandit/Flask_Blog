@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('{{ url_for('static', filename='assets/img/home-bg.jpg') }}');">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>{{ params['blog_naame'] }}</h1>
+                    <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content-->
+<div style="margin-left: 50px;">
+    <h1>Add a new post</h1>
+    <a href="/edit/0"><button class="btn btn-primary">Add Post</button></a>
+    <a href="/logout"><button class="btn btn-primary" style="margin-left: 70vw;">Logout</button></a>
+    <hr>
+    <!-- <h3>Upload a File</h3>
+    <form action="/uploader" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" />
+        <input class="btn btn-primary btn-sm" type="submit" />
+    </form> -->
+
+    <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>sno</th>
+                <th>Title</th>
+                <th>date</th>
+                <th>edit</th>
+                <th>delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in posts %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>
+                    <a href="{{ url_for('post_route', post_slug=post.slug) }}">
+                        {{ post.title }}
+                    </a>
+                </td>
+                <td>{{ post.date }}</td>
+                <td><a href="/edit/{{post.sno}}"><button class="btn btn-sm btn-primary">Edit</button></a></td>
+                <td><a href="/delete/{{post.sno}}" class="btn btn-sm btn-danger">Delete</a></td>
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }} mt-2">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+</div>
+{% endblock %}
